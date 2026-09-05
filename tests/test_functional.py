@@ -1,3 +1,4 @@
+from pathlib import Path
 import json
 import shutil
 import subprocess
@@ -9,6 +10,32 @@ from test_common import Fixture, core
     shutil.which("ffmpeg") and shutil.which("ffprobe"), "missing dependency: FFmpeg"
 )
 class Video(Fixture):
+    def test_mixed_batch_preserves_success_and_reports_failure(self):
+        source = self.seed().rename(self.inputs / "zz-good.mkv")
+        corrupt = self.file("00-corrupt.mkv", b"invalid input")
+        before = {path: path.read_bytes() for path in (source, corrupt)}
+        for jobs in (1, 2):
+            with self.subTest(jobs=jobs):
+                output = self.work / ("batch-" + str(jobs))
+                success_log = self.work / ("success-" + str(jobs) + ".json")
+                failure_log = self.work / ("failure-" + str(jobs) + ".json")
+                response = json.loads(self.cli(
+                    "video-mute", "--apply", "-j", jobs, "--output-dir", output,
+                    "-S", success_log, "-L", failure_log, self.inputs, code=1,
+                ).stdout)
+                self.assertEqual([r["path"] for r in response["results"]], [str(source)])
+                self.assertEqual([r["path"] for r in response["failures"]], [str(corrupt)])
+                self.assertEqual(response["results"][0]["status"], "written")
+                self.assertEqual(response["failures"][0]["status"], "failed")
+                self.assertEqual(json.loads(success_log.read_text()), response["results"])
+                self.assertEqual(json.loads(failure_log.read_text()), response["failures"])
+                published = Path(response["results"][0]["output"])
+                self.cli("video-verify", published)
+                self.assertFalse(Path(response["failures"][0]["output"]).exists())
+                self.assertEqual(list(output.iterdir()), [published])
+                for path, original in before.items():
+                    self.assertEqual(path.read_bytes(), original)
+
     def seed(self, suffix="mkv"):
         path = self.inputs / ("space [1]\n." + suffix)
         codec = (
