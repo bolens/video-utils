@@ -44,6 +44,28 @@ class Video(Fixture):
         )
         return path
 
+    def test_exclude_corrupt_input_from_applied_batch(self):
+        source = self.seed()
+        before = core.digest(source)
+        ignored = self.file("skip-corrupt.mkv", b"not valid media")
+        output = self.work / "selected-output"
+        result = json.loads(
+            self.cli(
+                "video-to-h264",
+                "--exclude",
+                "skip*",
+                "--apply",
+                "--output-dir",
+                output,
+                self.inputs,
+            ).stdout
+        )
+        self.assertEqual(len(result["results"]), 1)
+        self.assertEqual(result["results"][0]["status"], "written")
+        self.assertEqual(result["failures"], [])
+        self.assertEqual(core.digest(source), before)
+        self.assertEqual(ignored.read_bytes(), b"not valid media")
+
     def test_every_conversion(self):
         for tool in core.catalog():
             if tool["category"] != "conversion":
