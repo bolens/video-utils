@@ -9,3 +9,10 @@ Install FFmpeg with the required encoders, plus Python, Make, and ShellCheck for
 FFmpeg processes local media files. Keep FFmpeg and its codecs maintained. Input protocols and demuxers are restricted to supported local formats. These restrictions do not sandbox the media parser.
 
 No automatic downloads, network enrichment, telemetry, package installation, or source deletion happens when running commands.
+
+## Development checkouts
+
+The checkout folder may be renamed or contain spaces and Unicode. CLI identity
+and the default configuration directory remain `video-utils`. Git is required
+for the disposable-checkout regression tests; normal media commands do not
+require Git. Tests copy only tracked source and isolate HOME/XDG/TMPDIR state.
