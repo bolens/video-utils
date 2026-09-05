@@ -1,3 +1,3 @@
-ROOT := $(abspath ../../..)
+ROOT := ../../..
 TOOL := video-audio-extract
 include $(ROOT)/lib/tool.mk
