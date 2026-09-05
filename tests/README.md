@@ -17,3 +17,5 @@ Exclusion tests cover repeated and case-sensitive patterns, relative paths, mult
 Publication checks cover writer failure, missing output, rejected verification, sync/link failures, existing destinations, and two concurrent publishers. They assert that failed outputs stay unpublished and staging files are removed.
 
 Mixed valid/corrupt batches run with one and two workers. Functional checks verify successful output, source retention, absent failed output, nonzero exit status, and matching success/failure reports. These cases run in the existing `make test` and `make test-functional` tiers, and together in `make test-all`.
+
+A two-audio-track MP4 remux fixture checks every compressed packet payload and per-stream packet order, stream codecs/counts, audio language/default flags, a container title, and unchanged source bytes. These checks do not certify every container metadata field or timing convention.
