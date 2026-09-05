@@ -39,6 +39,7 @@ class Video(Fixture):
                 str(path),
             ],
             check=True,
+            env=self.env,
             capture_output=True,
             timeout=60,
         )
