@@ -1,0 +1,664 @@
+[
+  {
+    "name": "library-inventory",
+    "operation": "inventory",
+    "description": "List file sizes and relative paths.",
+    "category": "library",
+    "mode": "read"
+  },
+  {
+    "name": "library-dupes",
+    "operation": "duplicates",
+    "description": "Find exact SHA-256 duplicates without deleting files.",
+    "category": "library",
+    "mode": "read"
+  },
+  {
+    "name": "hash-manifest",
+    "operation": "manifest",
+    "description": "Print a JSON SHA-256 manifest for the input tree.",
+    "category": "library",
+    "mode": "read"
+  },
+  {
+    "name": "hash-verify",
+    "operation": "hash-verify",
+    "description": "Verify file presence and hashes against a JSON manifest.",
+    "category": "library",
+    "mode": "read"
+  },
+  {
+    "name": "tree-diff",
+    "operation": "tree-diff",
+    "description": "Compare file hashes and presence against another tree.",
+    "category": "library",
+    "mode": "read"
+  },
+  {
+    "name": "path-audit",
+    "operation": "path-audit",
+    "description": "Report filename portability issues.",
+    "category": "library",
+    "mode": "read"
+  },
+  {
+    "name": "mp4-to-mkv",
+    "operation": "remux",
+    "description": "Copy all streams from MP4 to MKV without re-encoding.",
+    "category": "conversion",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mp4"
+    ]
+  },
+  {
+    "name": "mov-to-mkv",
+    "operation": "remux",
+    "description": "Copy all streams from MOV to MKV without re-encoding.",
+    "category": "conversion",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mov"
+    ]
+  },
+  {
+    "name": "avi-to-mkv",
+    "operation": "remux",
+    "description": "Copy all streams from AVI to MKV without re-encoding.",
+    "category": "conversion",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".avi"
+    ]
+  },
+  {
+    "name": "webm-to-mkv",
+    "operation": "remux",
+    "description": "Copy all streams from WEBM to MKV without re-encoding.",
+    "category": "conversion",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".webm"
+    ]
+  },
+  {
+    "name": "ts-to-mkv",
+    "operation": "remux",
+    "description": "Copy all streams from TS to MKV without re-encoding.",
+    "category": "conversion",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".ts"
+    ]
+  },
+  {
+    "name": "mkv-to-mp4",
+    "operation": "remux",
+    "description": "Copy all streams from MKV to MP4 without re-encoding.",
+    "category": "conversion",
+    "mode": "write",
+    "suffix": "mp4",
+    "mux": "mp4",
+    "extensions": [
+      ".mkv"
+    ]
+  },
+  {
+    "name": "mov-to-mp4",
+    "operation": "remux",
+    "description": "Copy all streams from MOV to MP4 without re-encoding.",
+    "category": "conversion",
+    "mode": "write",
+    "suffix": "mp4",
+    "mux": "mp4",
+    "extensions": [
+      ".mov"
+    ]
+  },
+  {
+    "name": "video-to-h264",
+    "operation": "transcode",
+    "description": "Create an H.264/AAC MP4 viewing copy.",
+    "category": "conversion",
+    "mode": "write",
+    "codec": "h264",
+    "suffix": "mp4",
+    "mux": "mp4",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-to-hevc",
+    "operation": "transcode",
+    "description": "Create an HEVC/AAC MP4 viewing copy.",
+    "category": "conversion",
+    "mode": "write",
+    "codec": "hevc",
+    "suffix": "mp4",
+    "mux": "mp4",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-to-webm",
+    "operation": "transcode",
+    "description": "Create a VP9/Opus WebM viewing copy.",
+    "category": "conversion",
+    "mode": "write",
+    "codec": "vp9",
+    "suffix": "webm",
+    "mux": "webm",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-to-ffv1",
+    "operation": "transcode",
+    "description": "Create an FFV1/FLAC Matroska copy. Does not restore lost quality.",
+    "category": "conversion",
+    "mode": "write",
+    "codec": "ffv1",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-trim",
+    "operation": "trim",
+    "description": "Re-encode a clip from a start time and duration.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-resize",
+    "operation": "resize",
+    "description": "Fit video inside a bounding box with even dimensions.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-mute",
+    "operation": "mute",
+    "description": "Copy the first video stream without audio.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-strip",
+    "operation": "strip",
+    "description": "Re-encode without global metadata or chapters.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-deinterlace",
+    "operation": "deinterlace",
+    "description": "Apply the yadif deinterlacing filter.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-rotate",
+    "operation": "rotate",
+    "description": "Rotate video 90 degrees clockwise.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "mkv",
+    "mux": "matroska",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-audio-extract",
+    "operation": "audio-extract",
+    "description": "Extract the first audio stream to FLAC.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "flac",
+    "mux": "flac",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-poster",
+    "operation": "poster",
+    "description": "Export a PNG frame at a chosen time.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "png",
+    "mux": "image2",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-contact-sheet",
+    "operation": "contact-sheet",
+    "description": "Export twelve sampled frames in a 4 by 3 PNG grid.",
+    "category": "transform",
+    "mode": "write",
+    "suffix": "png",
+    "mux": "image2",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-metadata",
+    "operation": "metadata",
+    "description": "Report container, streams, tags, and chapters.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-streams",
+    "operation": "streams",
+    "description": "List stream codec and format details.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-chapters",
+    "operation": "chapters",
+    "description": "List chapter time ranges and titles.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-verify",
+    "operation": "verify",
+    "description": "Decode video and audio streams with errors treated as failures.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-subtitle-audit",
+    "operation": "subtitle-audit",
+    "description": "List subtitle streams and language tags.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-audio-audit",
+    "operation": "audio-audit",
+    "description": "List audio tracks, codecs, and channel layouts.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-hdr-audit",
+    "operation": "hdr-audit",
+    "description": "Report color signaling and HDR side data.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-black-detect",
+    "operation": "black-detect",
+    "description": "Detect black intervals using FFmpeg thresholds.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-freeze-detect",
+    "operation": "freeze-detect",
+    "description": "Detect frozen picture intervals.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  },
+  {
+    "name": "video-silence-detect",
+    "operation": "silence-detect",
+    "description": "Detect silent intervals in the first audio track.",
+    "category": "audit",
+    "mode": "read",
+    "extensions": [
+      ".mkv",
+      ".mp4",
+      ".mov",
+      ".avi",
+      ".webm",
+      ".m4v",
+      ".mpg",
+      ".mpeg",
+      ".ts",
+      ".m2ts",
+      ".flv",
+      ".wmv",
+      ".ogv"
+    ]
+  }
+]
