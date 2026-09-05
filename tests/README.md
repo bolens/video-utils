@@ -19,3 +19,8 @@ Publication checks cover writer failure, missing output, rejected verification, 
 Mixed valid/corrupt batches run with one and two workers. Functional checks verify successful output, source retention, absent failed output, nonzero exit status, and matching success/failure reports. These cases run in the existing `make test` and `make test-functional` tiers, and together in `make test-all`.
 
 A two-audio-track MP4 remux fixture checks every compressed packet payload and per-stream packet order, stream codecs/counts, audio language/default flags, a container title, and unchanged source bytes. These checks do not certify every container metadata field or timing convention.
+
+`make test-docker` builds the runtime image and tests disposable bind-mounted
+fixtures, non-root ownership, read-only root operation and CLI failure behavior.
+It requires Docker and host Python 3.11+. `CONTAINER_ENGINE=podman` uses rootless
+Podman locally. Docker CI runs this target on every PR and main push.
