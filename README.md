@@ -18,7 +18,7 @@ bin/video-utils video-to-h264 --output-dir ./viewing ./masters
 # Review the plan, then add --apply to create outputs.
 ```
 
-36 commands cover conversion, inspection, and library maintenance. Tool directories are thin Bash entry points over a shared Python engine, following the layout and preservation intent of [audio-utils](https://github.com/bolens/audio-utils).
+37 commands cover conversion, inspection, and library maintenance. Tool directories are thin Bash entry points over a shared Python engine, following the layout and preservation intent of [audio-utils](https://github.com/bolens/audio-utils).
 
 ## Working contract
 
