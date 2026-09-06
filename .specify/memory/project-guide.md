@@ -1,5 +1,7 @@
 # video-utils project guide
 
+[Documentation](../../docs/README.md)
+
 Video preservation utilities for GNU/Linux, using Bash entry points and a Python 3.11+ shared engine.
 
 ## Source ownership
