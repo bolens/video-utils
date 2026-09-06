@@ -59,6 +59,40 @@ class Fixture(unittest.TestCase):
 
 
 class Common(Fixture):
+    def test_missing_domain_executable_preserves_dependency_status(self):
+        source = self.file("literal [*]雪.mp4", b"opaque fixture")
+        output = self.work / "output.mkv"
+        binaries = self.work / "binaries"
+        binaries.mkdir()
+        self.env["PATH"] = str(binaries)
+        self.cli("mp4-to-mkv", "-o", output, source)
+        self.assertFalse(output.exists())
+        for args in [("video-verify", source),
+                     ("mp4-to-mkv", "--apply", "-o", output, source)]:
+            with self.subTest(args=args):
+                result = self.cli(*args, code=2)
+                failures = json.loads(result.stdout)["failures"]
+                self.assertTrue(failures[0]["dependency"])
+                self.assertIn("missing dependency: ffprobe", failures[0]["error"])
+                self.assertFalse(output.exists())
+                self.assertEqual(source.read_bytes(), b"opaque fixture")
+
+    def test_missing_detector_executable_preserves_dependency_status(self):
+        source = self.file("sample.mp4", b"opaque fixture")
+        binaries = self.work / "binaries"
+        binaries.mkdir()
+        probe = binaries / "ffprobe"
+        probe.write_text("#!" + sys.executable + "\nprint('{}')\n")
+        probe.chmod(0o700)
+        self.env["PATH"] = str(binaries)
+        for tool in ("video-verify", "video-black-detect", "video-freeze-detect", "video-silence-detect"):
+            with self.subTest(tool=tool):
+                result = self.cli(tool, source, code=2)
+                failures = json.loads(result.stdout)["failures"]
+                self.assertTrue(failures[0]["dependency"])
+                self.assertIn("missing dependency: ffmpeg", failures[0]["error"])
+        self.assertEqual(source.read_bytes(), b"opaque fixture")
+
     def test_fixture_replaces_inherited_xdg_paths(self):
         caller = self.work / "caller-state"
         caller.mkdir()
