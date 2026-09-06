@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "video-utils": {
+      "command": "python3",
+      "args": [
+        "/absolute/path/to/video-utils/mcp/server.py",
+        "--allow-root",
+        "/absolute/path/to/library"
+      ]
+    }
+  }
+}
