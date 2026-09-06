@@ -1,7 +1,7 @@
 """Local container conversion and video inspection with full decode checks."""
 
 import json
-from core import publish, run
+from core import UsageError, publish, run
 
 INPUT = [
     "-protocol_whitelist",
@@ -94,26 +94,29 @@ def inspect(tool, source, args):
 
         flag = "-af" if op == "silence-detect" else "-vf"
         stream = "0:a:0" if op == "silence-detect" else "0:v:0"
-        result = subprocess.run(
-            [
-                "ffmpeg",
-                "-hide_banner",
-                "-nostdin",
-                *INPUT,
-                "-i",
-                str(source),
-                "-map",
-                stream,
-                flag,
-                filters[op],
-                "-f",
-                "null",
-                "-",
-            ],
-            capture_output=True,
-            timeout=3600,
-            check=False,
-        )
+        try:
+            result = subprocess.run(
+                [
+                    "ffmpeg",
+                    "-hide_banner",
+                    "-nostdin",
+                    *INPUT,
+                    "-i",
+                    str(source),
+                    "-map",
+                    stream,
+                    flag,
+                    filters[op],
+                    "-f",
+                    "null",
+                    "-",
+                ],
+                capture_output=True,
+                timeout=3600,
+                check=False,
+            )
+        except FileNotFoundError as error:
+            raise UsageError("missing dependency: ffmpeg") from error
         if result.returncode:
             raise RuntimeError(result.stderr.decode("utf-8", "replace")[-4000:])
         marker = {

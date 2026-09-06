@@ -12,6 +12,9 @@ claim that the original work followed Spec Kit. New behavior requires a separate
 change contract. Existing feature specifications remain authoritative within their
 own scope.
 
+[Legacy contracts](legacy-contracts.md) and [37-tool coverage](legacy-coverage.md)
+extend this baseline across every existing public and supporting surface.
+
 ## User scenarios and testing
 
 ### User story 1: Plan a conversion before writing (P1)
@@ -41,6 +44,14 @@ An operator inventories files, computes manifests, compares trees, or requests a
 - **FR-005**: Shared library tools MUST provide inventory, summary, exact duplicate hashes, manifests, hash verification, tree comparison, and path auditing without deleting source files.
 - **FR-006**: MCP MUST remain local stdio, expose only read operations, require allowed roots, and reject unknown arguments.
 - **FR-007**: Batch execution MUST bound outstanding jobs, preserve result ordering, retain successful outputs, and report partial failures with nonzero exit status.
+
+## Corrective requirement from the legacy audit
+
+- **FR-008**: Missing ffprobe/ffmpeg executables MUST retain dependency exit code
+  2 across CLI/domain imports and direct detector subprocesses. Applied requests
+  must retain sources and publish no output; dry-run planning remains available.
+  Installed executables reporting missing encoders or invalid media remain
+  operation failures (1).
 
 ## Success criteria
 
