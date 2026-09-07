@@ -1,5 +1,7 @@
 # Formats and limits
 
+[Documentation](README.md)
+
 Matroska is the preservation container. Remux commands copy every stream and preserve metadata and chapters where the destination supports them. An incompatible stream causes failure rather than being silently discarded. Remux verification compares codec types and counts and fully decodes audio/video.
 
 H.264/AAC, HEVC/AAC, and VP9/Opus commands produce viewing copies. FFV1/FLAC produces a lossless-codec Matroska copy, but cannot restore information lost in an earlier encode. Transcodes and picture transforms select the first video and all audio streams. They do not retain subtitles, attachments, or additional video tracks. Keep the original or use a compatible remux when those are required.

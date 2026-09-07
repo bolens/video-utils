@@ -4,7 +4,7 @@
 
 Remux containers, encode viewing copies, inspect streams, and find picture or audio faults. Batch operations for the life of a video library.
 
-**[Browse the site](https://bolens.github.io/video-utils/)** · [Command catalog](docs/catalog.md) · [Architecture diagram](https://bolens.github.io/video-utils/diagrams/architecture.html)
+**[Browse the site](https://bolens.github.io/video-utils/)** · [Documentation](docs/README.md) · [Command catalog](docs/catalog.md) · [Architecture diagram](https://bolens.github.io/video-utils/diagrams/architecture.html)
 
 ## Start here
 

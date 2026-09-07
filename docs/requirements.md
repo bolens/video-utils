@@ -1,5 +1,7 @@
 # Requirements
 
+[Documentation](README.md)
+
 GNU/Linux, Bash 4.3+, Python 3.11+, and GNU Make for development shortcuts. No third-party Python packages are used. Python 3.11 and 3.14 run in CI. ShellCheck is required for `make check`.
 
 Video operations require `ffmpeg` and `ffprobe`. Encoders include libx264, libx265, libvpx-vp9, libopus, AAC, FFV1, FLAC, and PNG. Use `ffmpeg -encoders` to inspect your build. Missing encoders are operation failures. Library hashing and inventory need only Python.
